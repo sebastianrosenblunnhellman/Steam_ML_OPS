@@ -3,10 +3,6 @@
 
 Este repositorio contiene el código y los recursos relacionados con el proyecto de Machine Learning DevOps realizados para el primer proyecto individual del bootcamp SoyHendy de la carrera de DataScience. Aquí encontrarás información sobre el flujo de trabajo de forma resumida para la puesta en marcha del proyecto.
 
-## Datos Iniciales 📊
-
-![Datos Iniciales](assets\datos_iniciales.PNG)
-
 ## ETL 🛠️
 
 ### Transformaciones generales de ETL inicial 🔄
