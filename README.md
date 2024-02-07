@@ -115,7 +115,12 @@ Devuelve cantidad de items y porcentaje de contenido Free por año según empres
 
 Ingresando el ID de un producto, se espera recibir una lista con 5 juegos recomendados similares al ingresado.
 
-Para esta función, se utilizó `TfidfVectorizer` de `sklearn.feature_extraction.text` sobre la columna `genres`. Luego, se calcularon los features (en `genres`) para cada `item_id`. Posteriormente, se calcularon las similitudes entre todos los documentos, se crearon las predicciones para todos los datos y se exportó el dataframe para ser consumido por la función final en la API. Esto se realizó debido a las limitaciones de procesamiento que ofrece `render` (plataforma donde se realizó el despliegue).
+En esta funcion se emplea el `TfidfVectorizer` de `sklearn.feature_extraction.text` para convertir los géneros de los juegos en vectores numéricos. Esto permite asignar a cada palabra un valor que refleja su importancia en un documento y en toda la colección. Estos vectores destacan las palabras clave que son significativas en un juego pero poco comunes en otros. 
+Posteriormente, estos vectores son utilizados para calcular la similitud entre los juegos, lo cual es fundamental para la funcionalidad de recomendación del proyecto. En resumen, el uso de `TfidfVectorizer` facilita la identificación de juegos similares basados en sus géneros, mejorando la precisión del sistema de recomendación. Finalmente se crearon las predicciones para todos los datos y se exportó el dataframe para ser consumido por la función final en la API. Esto se realizó debido a las limitaciones de procesamiento que ofrece `render` (plataforma donde se realizó el despliegue).
+
+
+
+
 
 ### Sistema de Recomendación User-Item 🎮👤:
 
@@ -123,7 +128,9 @@ Para esta función, se utilizó `TfidfVectorizer` de `sklearn.feature_extraction
 
 Ingresando el ID de un usuario, se espera recibir una lista con 5 juegos recomendados para dicho usuario.
 
-Para esta función, se utilizó `item_id` y `user_id` con respecto al `playtime_forever`. Se normalizaron los datos de los tiempos de juego en un rango de 0 a 1 y luego se empleó `GridSearchCV` con el algoritmo SVD para realizar una búsqueda en cuadrícula con validación cruzada con el algoritmo SVD y medidas ["rmse", "fcp"]. Finalmente, se seleccionó el modelo con el mejor puntaje y se realizaron las predicciones pertinentes. Nuevamente, se exportaron las predicciones para ser consumidas directamente por la API.
+Para esta funcion empleamos las variables item_id y user_id, relacionándolos con los datos de playtime_forever (tiempo de juego acumulado). Primero, normalizamos estos datos para que estén dentro de un rango uniforme de 0 a 1, lo que facilita el procesamiento por parte del algoritmo. Luego, utilizamos GridSearchCV junto con el algoritmo SVD (Descomposición de Valor Singular) para llevar a cabo una búsqueda en cuadrícula de los mejores hiperparametros con validación cruzada. Durante este proceso, evaluamos el rendimiento del modelo utilizando métricas como "rmse" (Error Cuadrático Medio) y "fcp" (Fracción de Concordancia Fraccional).
+
+Una vez completada la búsqueda, seleccionamos el modelo que obtuvo el mejor puntaje en función de las métricas mencionadas anteriormente. Con este modelo optimizado, generamos las predicciones pertinentes para todo el conjunto de datos. Estas predicciones fueron exportadas  para ser consumidas directamente por nuestra API, como ya se menciono, esto se hizo debido a las limitaciones de procesamiento de render.
 
 # API deploy 🚀
 
@@ -143,6 +150,6 @@ La API está desarrollada utilizando FastAPI, una librería de Python para const
 
 ## Uso 🕹️
 
-Para utilizar la API, simplemente sigue este enlace: [API de Machine Learning del Conjunto de Datos de Steam](https://steam-data-project.onrender.com/docs).
+Para utilizar la API, simplemente sigue este enlace: [API de Machine Learning del Conjunto de Datos de Steam](https://steam-data-project.onrender.com).
 
 ¡Esperamos que disfrutes explorando los datos y utilizando los modelos de Machine Learning proporcionados por la API! 🚀
